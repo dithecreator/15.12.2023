@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Получение прогноза погоды</title>
+</head>
+<style>
+    * {
+        font-size: 32px;
+    }
+
+    span {
+        color: red;
+        font-size: 32px;
+    }
+
+
+
+
+
+
+    h1 {
+        overflow: hidden; 
+    }
+
+        #weather {
+        float: left; 
+        margin-right: 20px; 
+    }
+
+    #img {
+        float: left; 
+        width: auto; 
+        height: 32px; 
+    }
+
+
+
+    input {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        button {
+            font-size: 16px;
+        }
+
+        #additional-info {
+            margin-top: 10px;
+        }
+
+</style>
+
+<body>
+    <h1>Прогноз погоды - <span id="city"></span></h1>
+    <label for="cityInput">Введите название города: </label>
+    <input type="text" id="cityInput" placeholder="Название города">
+    <button onclick="getWeather()">Получить прогноз</button>
+    <div id="weather"></div>
+    <img id="img" />
+    <div id="additional-info"></div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

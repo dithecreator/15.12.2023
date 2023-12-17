@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Сериализация в JSON и десериализация</title>
+</head>
+<body>
+    <script>
+        let club = {
+            name: "Черноморец",
+            city: "Одесса",
+            year: 1936,
+            stadium: "Черноморец",
+            display: function () {
+                document.write(this.name + "<br />");
+                document.write(this.city + "<br />");
+                document.write(this.year + "<br />");
+                document.write(this.stadium + "<br />");
+            }
+        };
+        club.display();
+
+        // Сериализация
+        let serializedClub = JSON.stringify(club);
+        document.write("<br />");
+        document.write(serializedClub + "<br />");
+
+        // Десериализация
+        let club2 = JSON.parse(serializedClub);
+        club2.display = function () {
+            document.write(this.name + "<br />");
+            document.write(this.city + "<br />");
+            document.write(this.year + "<br />");
+            document.write(this.stadium + "<br />");
+        };
+        document.write("<br />");
+        club2.display();
+
+        let country = {
+            name: "Украина",
+            language: "Украинский",
+            capital: {
+                name: "Киев",
+                population: 2909491,
+                year: 1534
+            }
+        };
+        document.write("<br />");
+        document.write("Страна: " + country.name + "<br />");
+        document.write("Государственный язык: " + country.language + "<br />");
+        document.write("Столица: " + country.capital.name + "<br />");
+        document.write("Население: " + country["capital"]["population"] + "<br />");
+        document.write("Год основания: " + country.capital["year"] + "<br />");
+
+        // Сериализация
+        let serializedCountry = JSON.stringify(country);
+        document.write("<br />");
+        document.write(serializedCountry + "<br />");
+
+        // Десериализация
+        let country2 = JSON.parse(serializedCountry);
+        document.write("<br />");
+        document.write("Страна: " + country2.name + "<br />");
+        document.write("Государственный язык: " + country2.language + "<br />");
+        document.write("Столица: " + country2.capital.name + "<br />");
+        document.write("Население: " + country2["capital"]["population"] + "<br />");
+        document.write("Год основания: " + country2.capital["year"] + "<br />");
+
+        let country3 = {
+            name: "Швейцария",
+            languages: ["немецкий", "французский", "итальянский"], // массив строк
+            capital: {
+                name: "Берн",
+                population: 126598
+            },
+            cities: [ // массив объектов
+                { name: "Цюрих", population: 378884 },
+                { name: "Женева", population: 188634 },
+                { name: "Базель", population: 164937 }
+            ]
+        };
+
+        document.write("<br />Страна: " + country3.name + "<br />");
+        document.write("Столица: " + country3.capital.name + "<br />");
+        document.write("Население: " + country3["capital"]["population"] + "<br />");
+        document.write("<h5>Официальные языки Швейцарии</h5>");
+        for (let i = 0; i < country3.languages.length; i++)
+            document.write(country3.languages[i] + "<br/>");
+        document.write("<h5>Города Швейцарии</h5>");
+        for (let i = 0; i < country3.cities.length; i++)
+            document.write(country3.cities[i].name + "<br/>");
+
+        // Сериализация
+        serializedCountry = JSON.stringify(country3);
+        document.write("<br />");
+        document.write(serializedCountry + "<br />");
+
+        localStorage.setItem("country", serializedCountry);
+        let savedCountry = JSON.parse(localStorage.getItem("country"));
+
+        document.write("<br />Страна: " + savedCountry.name + "<br />");
+        document.write("Столица: " + savedCountry.capital.name + "<br />");
+        document.write("Население: " + savedCountry["capital"]["population"] + "<br />");
+        document.write("<h5>Официальные языки Швейцарии</h5>");
+        for (let i = 0; i < savedCountry.languages.length; i++)
+            document.write(savedCountry.languages[i] + "<br/>");
+        document.write("<h5>Города Швейцарии</h5>");
+        for (let i = 0; i < savedCountry.cities.length; i++)
+            document.write(savedCountry.cities[i].name + "<br/>");
+
+        // Десериализация
+        let country4 = JSON.parse(serializedCountry);
+        document.write("<br />Страна: " + country4.name + "<br />");
+        document.write("Столица: " + country4.capital.name + "<br />");
+        document.write("Население: " + country4["capital"]["population"] + "<br />");
+        document.write("<h5>Официальные языки Швейцарии</h5>");
+        for (let i = 0; i < country4.languages.length; i++)
+            document.write(country4.languages[i] + "<br/>");
+        document.write("<h5>Города Швейцарии</h5>");
+        for (let i = 0; i < country4.cities.length; i++)
+            document.write(country4.cities[i].name + "<br/>");
+    </script>
+</body>
+</html>
